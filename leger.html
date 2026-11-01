@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LCOY RDC 2026 — Inscription</title>
+<meta name="description" content="Conférence locale de la jeunesse sur le climat, 3–4 novembre 2026 à Kinshasa. Inscriptions ouvertes.">
+<meta name="theme-color" content="#1D4336">
+<link rel="icon" href="/favicon.ico">
+<style>
+  :root{--vert:#1D4336;--or:#C9A24A;--creme:#F7F4EC;--texte:#20241F}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texte);background:var(--creme);line-height:1.5}
+  header{background:var(--vert);color:#fff;padding:18px 20px}
+  header .marque{font-weight:700;letter-spacing:.5px;font-size:15px}
+  header .marque span{color:var(--or)}
+  .bandeau{padding:26px 20px 22px;background:var(--vert);color:#fff;border-top:1px solid rgba(255,255,255,.12)}
+  .sur{color:var(--or);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin:0 0 10px}
+  h1{font-size:26px;line-height:1.2;margin:0 0 12px;font-weight:700}
+  .sep{width:54px;height:2px;background:var(--or);margin:0 0 14px}
+  .infos{font-size:15px;margin:0;color:rgba(255,255,255,.9)}
+  .faits{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 20px 4px;max-width:640px}
+  .fait{background:#fff;border:1px solid #E4DFD2;border-radius:10px;padding:12px}
+  .fait b{display:block;font-size:15px}
+  .fait small{color:#5C6357;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+  main{padding:18px 20px 30px;max-width:640px}
+  h2{font-size:19px;margin:22px 0 6px;color:var(--vert)}
+  p.chapeau{margin:0 0 16px;font-size:15px;color:#4A504A}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 5px}
+  input,select,textarea{width:100%;padding:12px;font-size:16px;border:1px solid #C9C4B6;border-radius:8px;background:#fff;font-family:inherit}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--vert);outline-offset:1px}
+  textarea{min-height:78px;resize:vertical}
+  .requis{color:#9B2C2C}
+  button{margin-top:20px;width:100%;padding:15px;font-size:16px;font-weight:700;border:0;border-radius:999px;background:var(--or);color:#1B1B14;cursor:pointer}
+  button:disabled{opacity:.6}
+  .note{font-size:12px;color:#5C6357;margin-top:12px}
+  .message{margin-top:16px;padding:14px;border-radius:10px;font-size:14px;display:none}
+  .ok{display:block;background:#E4F0E6;border:1px solid #9CC4A2;color:#1B4A26}
+  .ko{display:block;background:#FBEAEA;border:1px solid #DDA9A9;color:#7A1F1F}
+  footer{background:var(--vert);color:rgba(255,255,255,.85);padding:20px;font-size:12px;text-align:center}
+  footer a{color:var(--or);text-decoration:none}
+  a.retour{display:inline-block;margin-top:18px;color:var(--vert);font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="marque">LCOY <span>RDC 2026</span></div></header>
+
+<section class="bandeau">
+  <p class="sur">Local Conference of Youth</p>
+  <h1>Faire de la jeunesse un acteur de l'action climatique en RDC</h1>
+  <div class="sep"></div>
+  <p class="infos">3–4 novembre 2026 · Kinshasa · Présentiel et en ligne · Jeunes de 14 à 35 ans, issus des 26 provinces.</p>
+</section>
+
+<div class="faits">
+  <div class="fait"><small>Quand</small><b>3–4 nov. 2026</b></div>
+  <div class="fait"><small>Où</small><b>Kinshasa</b></div>
+  <div class="fait"><small>Format</small><b>Présentiel + en ligne</b></div>
+  <div class="fait"><small>Places</small><b>210 en présentiel</b></div>
+</div>
+
+<main>
+  <h2>Inscription</h2>
+  <p class="chapeau">Remplis ce formulaire : il prend moins d'une minute. Un courriel de confirmation te sera envoyé.</p>
+
+  <form id="f" novalidate>
+    <label for="nom_complet">Nom complet <span class="requis">*</span></label>
+    <input id="nom_complet" name="nom_complet" required autocomplete="name">
+
+    <label for="email">Adresse e-mail <span class="requis">*</span></label>
+    <input id="email" name="email" type="email" required autocomplete="email" inputmode="email">
+
+    <label for="telephone">Téléphone (WhatsApp de préférence) <span class="requis">*</span></label>
+    <input id="telephone" name="telephone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+243 …">
+
+    <label for="date_naissance">Date de naissance <span class="requis">*</span></label>
+    <input id="date_naissance" name="date_naissance" type="date" required>
+
+    <label for="sexe">Sexe</label>
+    <select id="sexe" name="sexe">
+      <option value="">—</option>
+      <option value="F">Féminin</option>
+      <option value="M">Masculin</option>
+    </select>
+
+    <label for="province">Province <span class="requis">*</span></label>
+    <input id="province" name="province" required placeholder="Ex. Kinshasa">
+
+    <label for="localite">Ville ou localité <span class="requis">*</span></label>
+    <input id="localite" name="localite" required>
+
+    <label for="zone_participation">Participation <span class="requis">*</span></label>
+    <select id="zone_participation" name="zone_participation" required>
+      <option value="">—</option>
+      <option value="Kinshasa (Presentiel)">Présentiel à Kinshasa</option>
+      <option value="En ligne">En ligne</option>
+    </select>
+
+    <label for="axe">Axe thématique qui t'intéresse <span class="requis">*</span></label>
+    <select id="axe" name="axe" required>
+      <option value="">—</option>
+      <option value="Axis 1">Gouvernance climatique et leadership</option>
+      <option value="Axis 2">Adaptation, résilience et justice climatique</option>
+      <option value="Axis 3">Environnement, biodiversité et inclusion</option>
+    </select>
+
+    <label for="message">Une attente particulière ? (facultatif)</label>
+    <textarea id="message" name="message" maxlength="500"></textarea>
+
+    <button type="submit" id="envoyer">Envoyer mon inscription</button>
+    <p class="note">Les champs marqués d'une étoile sont obligatoires. Tes données servent uniquement à l'organisation de la conférence.</p>
+    <div class="message" id="msg" role="status" aria-live="polite"></div>
+  </form>
+
+  <a class="retour" href="/">Voir la page complète de la conférence →</a>
+</main>
+
+<footer>
+  Organisation : CJP-RDC et FANYA ASSOCIATION · <a href="https://wa.me/243977555768">Inspire by YuuStore</a>
+</footer>
+
+<script>
+(function () {
+  var API = 'https://lcoyrdc2026.pythonanywhere.com/api';
+  var f = document.getElementById('f');
+  var msg = document.getElementById('msg');
+  var btn = document.getElementById('envoyer');
+
+  function afficher(texte, classe) {
+    msg.className = 'message ' + classe;
+    msg.textContent = texte;
+  }
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var donnees = {};
+    var champs = f.querySelectorAll('input, select, textarea');
+    for (var i = 0; i < champs.length; i++) {
+      donnees[champs[i].name] = champs[i].value.trim();
+    }
+    var obligatoires = ['nom_complet', 'email', 'telephone', 'date_naissance', 'province', 'localite', 'zone_participation', 'axe'];
+    for (var j = 0; j < obligatoires.length; j++) {
+      if (!donnees[obligatoires[j]]) {
+        afficher('Merci de remplir le champ : ' + obligatoires[j].replace(/_/g, ' '), 'ko');
+        return;
+      }
+    }
+    donnees.action = 'createInscription';
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    afficher('Envoi en cours…', 'ok');
+
+    var fini = false;
+    var minuteur = setTimeout(function () {
+      if (fini) return;
+      fini = true;
+      btn.disabled = false;
+      btn.textContent = 'Envoyer mon inscription';
+      afficher("Le réseau ne répond pas. Réessaie dans un instant ou écris-nous sur WhatsApp.", 'ko');
+    }, 25000);
+
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(donnees)
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (o) {
+        if (fini) return;
+        fini = true;
+        clearTimeout(minuteur);
+        btn.disabled = false;
+        btn.textContent = 'Envoyer mon inscription';
+        if (o.ok && o.d && o.d.ok) {
+          f.reset();
+          afficher('Inscription enregistrée. Merci ! Un courriel de confirmation arrive si ton adresse est valide.', 'ok');
+          msg.scrollIntoView({ block: 'center' });
+        } else {
+          afficher((o.d && o.d.error) ? o.d.error : "L'inscription n'a pas pu être enregistrée. Réessaie.", 'ko');
+        }
+      })
+      .catch(function () {
+        if (fini) return;
+        fini = true;
+        clearTimeout(minuteur);
+        btn.disabled = false;
+        btn.textContent = 'Envoyer mon inscription';
+        afficher("Connexion impossible. Vérifie tes données mobiles et réessaie.", 'ko');
+      });
+  });
+})();
+</script>
+</body>
+</html>
