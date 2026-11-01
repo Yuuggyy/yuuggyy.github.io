@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test réseau LCOY</title>
+<style>
+  body{font-family:system-ui,-apple-system,sans-serif;margin:0;padding:24px;background:#fff;color:#111;line-height:1.5}
+  h1{font-size:20px;margin:0 0 4px}
+  .ok{color:#0a7a2f;font-weight:700}
+  .ko{color:#b3261e;font-weight:700}
+  .att{color:#8a6d00;font-weight:700}
+  ul{padding-left:20px}
+  li{margin:6px 0}
+  .box{border:1px solid #ccc;border-radius:8px;padding:14px;margin-top:16px;font-size:15px}
+  code{background:#f2f2f2;padding:1px 5px;border-radius:4px;font-size:13px}
+</style>
+</head>
+<body>
+<h1>Test réseau — LCOY RDC 2026</h1>
+<p>Si tu lis ce texte, la page s'affiche correctement sur ce téléphone.</p>
+
+<div class="box">
+  <ul id="rapport">
+    <li>Page HTML : <span class="ok">chargée</span></li>
+    <li>JavaScript : <span id="js" class="att">en cours…</span></li>
+    <li>Connexion serveur d'inscriptions : <span id="api" class="att">en cours…</span></li>
+  </ul>
+</div>
+
+<p style="margin-top:18px;font-size:14px;color:#555" id="ua">—</p>
+
+<script>
+  var jsEl = document.getElementById('js');
+  var apiEl = document.getElementById('api');
+  jsEl.textContent = 'fonctionne';
+  jsEl.className = 'ok';
+  document.getElementById('ua').textContent = navigator.userAgent;
+
+  var t0 = Date.now();
+  var fini = false;
+  var minuteur = setTimeout(function () {
+    if (fini) return;
+    fini = true;
+    apiEl.textContent = "pas de réponse après 15 s (réseau lent ou bloqué)";
+    apiEl.className = 'ko';
+  }, 15000);
+
+  fetch('https://lcoyrdc2026.pythonanywhere.com/api', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'stats' })
+  })
+    .then(function (r) { return r.text().then(function (t) { return { s: r.status, t: t }; }); })
+    .then(function (o) {
+      if (fini) return;
+      fini = true;
+      clearTimeout(minuteur);
+      var sec = ((Date.now() - t0) / 1000).toFixed(1);
+      if (o.s === 200) {
+        apiEl.textContent = 'joignable (' + sec + ' s) — ' + o.t;
+        apiEl.className = 'ok';
+      } else {
+        apiEl.textContent = 'répond code ' + o.s + ' après ' + sec + ' s';
+        apiEl.className = 'ko';
+      }
+    })
+    .catch(function (e) {
+      if (fini) return;
+      fini = true;
+      clearTimeout(minuteur);
+      apiEl.textContent = "injoignable (" + (e && e.message ? e.message : 'erreur réseau') + ")";
+      apiEl.className = 'ko';
+    });
+</script>
+</body>
+</html>
