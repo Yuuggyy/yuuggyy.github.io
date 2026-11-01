@@ -1,0 +1,1 @@
+function e(e,t=new Date){if(!e)return 0;let n=String(e).slice(0,10).split(`-`).map(Number);if(n.length!==3||n.some(e=>Number.isNaN(e)))return 0;let[r,i,a]=n,o=t.getFullYear()-r,s=t.getMonth()+1;return(s<i||s===i&&t.getDate()<a)&&--o,o>=0&&o<130?o:0}function t(t){let n=e(t);return n>0&&n<18}export{e as n,t};
