@@ -110,6 +110,10 @@
     <button type="submit" id="envoyer">Envoyer mon inscription</button>
     <p class="note">Les champs marqués d'une étoile sont obligatoires. Tes données servent uniquement à l'organisation de la conférence.</p>
     <div class="message" id="msg" role="status" aria-live="polite"></div>
+    <p class="note" id="secours" hidden style="margin-top:12px">
+      <a id="lien-secours" href="https://wa.me/243820083746" style="color:#0b6b3a;font-weight:700">Envoyer ces informations par WhatsApp</a>
+      : l'équipe enregistrera ton inscription à la main.
+    </p>
   </form>
 
   <a class="retour" href="/">Voir la page complète de la conférence →</a>
@@ -125,6 +129,27 @@
   var f = document.getElementById('f');
   var msg = document.getElementById('msg');
   var btn = document.getElementById('envoyer');
+
+  function lienSecours(d) {
+    var texte = "Inscription LCOY RDC 2026";
+    if (d) {
+      if (d.nom_complet) texte += " | Nom : " + d.nom_complet;
+      if (d.date_naissance) texte += " | Naissance : " + d.date_naissance;
+      if (d.province) texte += " | Province : " + d.province;
+      if (d.localite) texte += " | Ville/commune : " + d.localite;
+      if (d.telephone) texte += " | Téléphone : " + d.telephone;
+      if (d.email) texte += " | Courriel : " + d.email;
+      if (d.axe) texte += " | Axe : " + d.axe;
+    }
+    return "https://wa.me/243820083746?text=" + encodeURIComponent(texte);
+  }
+  function proposerSecours(d) {
+    var bloc = document.getElementById('secours');
+    var lien = document.getElementById('lien-secours');
+    if (!bloc || !lien) return;
+    lien.href = lienSecours(d);
+    bloc.hidden = false;
+  }
 
   function afficher(texte, classe) {
     msg.className = 'message ' + classe;
@@ -156,7 +181,8 @@
       fini = true;
       btn.disabled = false;
       btn.textContent = 'Envoyer mon inscription';
-      afficher("Le réseau ne répond pas. Réessaie dans un instant ou écris-nous sur WhatsApp.", 'ko');
+      afficher("Le réseau ne répond pas sur ce téléphone. Tu peux envoyer ton inscription par WhatsApp :", 'ko');
+      proposerSecours(donnees);
     }, 25000);
 
     fetch(API, {
@@ -176,7 +202,8 @@
           afficher('Inscription enregistrée. Merci ! Un courriel de confirmation arrive si ton adresse est valide.', 'ok');
           msg.scrollIntoView({ block: 'center' });
         } else {
-          afficher((o.d && o.d.error) ? o.d.error : "L'inscription n'a pas pu être enregistrée. Réessaie.", 'ko');
+          afficher((o.d && o.d.error) ? o.d.error : "L'inscription n'a pas pu être enregistrée. Réessaie ou envoie-la par WhatsApp :", 'ko');
+          proposerSecours(donnees);
         }
       })
       .catch(function () {
@@ -185,7 +212,8 @@
         clearTimeout(minuteur);
         btn.disabled = false;
         btn.textContent = 'Envoyer mon inscription';
-        afficher("Connexion impossible. Vérifie tes données mobiles et réessaie.", 'ko');
+        afficher("Connexion au serveur impossible sur ce réseau. Tu peux envoyer ton inscription par WhatsApp :", 'ko');
+        proposerSecours(donnees);
       });
   });
 })();
