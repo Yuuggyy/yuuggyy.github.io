@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>A Casa Mia — Menu digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700;900&family=Jost:wght@400;700;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--or:#B4452F;--or-clair:#F2C9A0;--fond:#120D0A;--papier:#1C1410;--ivoire:#F6EAD8;--sourd:#9A8570;--ft:'Cormorant Garamond';--fs:'Playfair Display';--fc:'Jost'}
+html,body{height:100%;overflow:hidden;background:var(--fond);color:var(--ivoire);font-family:var(--fc),monospace}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(3) infinite}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-2%,1%)}66%{transform:translate(1%,-2%)}100%{transform:translate(0,0)}}
+.entete{position:fixed;top:0;left:0;width:100%;padding:14px 20px;z-index:100;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.entete .marque{font-family:var(--ft),serif;font-weight:900;font-size:17px;color:var(--or);letter-spacing:1.5px;text-transform:uppercase}
+.entete .marque small{display:block;font-family:var(--fc),monospace;font-weight:400;font-size:8px;color:var(--sourd);letter-spacing:3px;margin-top:2px}
+.points{display:flex;gap:6px}
+.points i{width:7px;height:7px;border-radius:50%;border:1px solid var(--or);opacity:.45}
+.points i.on{background:var(--or);opacity:1}
+#livre{position:relative;width:min(430px,92vw);height:min(660px,80vh);perspective:2400px;z-index:5}
+.feuille{position:absolute;inset:0;background:var(--papier);border:1px solid rgba(212,175,55,.35);
+  border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.7);overflow:hidden;display:none;flex-direction:column;
+  padding:26px 22px 34px}
+.feuille.active{display:flex}
+.filigrane{position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background:radial-gradient(circle at 50% 45%, var(--or) 0%, transparent 62%)}
+.couverture{align-items:center;justify-content:center;text-align:center;border:2px double var(--or)}
+.mono{font-family:var(--ft),serif;font-weight:900;font-size:60px;color:var(--or);line-height:1;
+  text-shadow:0 0 30px rgba(212,175,55,.35)}
+h1.glitch{font-family:var(--ft),serif;font-size:21px;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  color:var(--or-clair);margin-top:14px;position:relative;animation:glitch 4.5s infinite}
+h1.glitch::before,h1.glitch::after{content:attr(data-texte);position:absolute;inset:0;opacity:0}
+h1.glitch::before{color:#00e5ff;animation:g1 4.5s infinite}
+h1.glitch::after{color:#ff2d78;animation:g2 4.5s infinite}
+@keyframes glitch{0%,88%,100%{transform:none}90%{transform:translateX(-3px)}93%{transform:translateX(3px)}}
+@keyframes g1{0%,88%,100%{opacity:0;transform:none}90%{opacity:.75;transform:translateX(-4px)}93%{opacity:0}}
+@keyframes g2{0%,88%,100%{opacity:0;transform:none}90%{opacity:.7;transform:translateX(4px)}93%{opacity:0}}
+.sous{font-size:10px;letter-spacing:4px;color:var(--sourd);text-transform:uppercase;margin-top:12px}
+.trait{width:56px;height:1px;background:var(--or);margin:22px 0;opacity:.7}
+.infos{font-size:10.5px;line-height:2;color:var(--sourd)}
+.infos b{color:var(--ivoire);font-weight:400}
+h2{font-family:var(--ft),serif;font-size:16px;color:var(--or);letter-spacing:1.5px;text-transform:uppercase}
+.ligne-cat{width:42px;height:2px;background:var(--or);margin:8px 0 18px}
+.plats{flex:1;overflow-y:auto;padding-right:4px}
+.plat{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dotted rgba(212,175,55,.28)}
+.plat .n{font-family:var(--fs),serif;font-size:13px;color:var(--ivoire)}
+.plat .d{font-size:9.5px;color:var(--sourd);line-height:1.5;margin-top:3px}
+.plat .p{font-family:var(--ft),serif;font-size:14px;color:var(--or);white-space:nowrap}
+.pied{margin-top:auto;padding-top:10px;border-top:1px solid rgba(212,175,55,.18);font-size:8.5px;color:var(--sourd);display:flex;justify-content:space-between}
+.pied a{color:var(--or);text-decoration:none}
+.ctrl{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100}
+.ctrl button{width:42px;height:42px;border-radius:50%;background:transparent;border:1px solid var(--or);color:var(--or);font-size:17px;cursor:pointer;transition:.2s}
+.ctrl button:hover{background:var(--or);color:#111}
+#compteur{font-size:10px;color:var(--sourd);letter-spacing:2px;min-width:56px;text-align:center}
+.cmd{position:fixed;bottom:26px;right:20px;z-index:100;background:var(--or);color:#141208;border:none;
+  padding:13px 20px;border-radius:30px;font-family:var(--fc),monospace;font-weight:700;font-size:11px;
+  letter-spacing:1px;cursor:pointer;box-shadow:0 8px 24px rgba(212,175,55,.3);text-decoration:none;display:inline-block}
+.cmd:active{transform:scale(.96)}
+.panneau{position:fixed;inset:0;background:rgba(6,6,5,.86);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.panneau.ouvert{display:flex}
+.boite{background:var(--papier);border:1px solid var(--or);border-radius:8px;padding:24px;width:min(420px,92vw);max-height:84vh;overflow-y:auto}
+.boite h3{font-family:var(--ft),serif;color:var(--or);font-size:15px;letter-spacing:1px;margin-bottom:16px}
+.choix{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dotted rgba(212,175,55,.25);font-size:12px}
+.choix button{background:none;border:1px solid var(--or);color:var(--or);width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:14px;line-height:1}
+.boite input{width:100%;background:transparent;border:1px solid rgba(212,175,55,.4);color:var(--ivoire);
+  padding:11px;border-radius:4px;font-family:var(--fc),monospace;font-size:12px;margin:8px 0}
+.boite .valider{width:100%;background:var(--or);color:#141208;border:none;padding:13px;border-radius:4px;
+  font-family:var(--fc),monospace;font-weight:700;font-size:12px;cursor:pointer;margin-top:10px;letter-spacing:1px}
+.boite .fermer{background:none;border:none;color:var(--sourd);font-size:11px;cursor:pointer;margin-top:12px;font-family:var(--fc),monospace}
+.scene{position:fixed;z-index:1;opacity:.14;pointer-events:none}
+.scene svg{width:100%;height:auto;stroke:var(--or);fill:none;stroke-width:1.4}
+#scene-plat{bottom:9%;left:4%;width:150px}
+#scene-verre{top:12%;right:5%;width:92px}
+@keyframes flotter{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+@keyframes bulle{0%{opacity:0;transform:translateY(6px) scale(.7)}15%{opacity:1;transform:translateY(0) scale(1)}70%{opacity:1}100%{opacity:0;transform:translateY(-8px)}}
+.etincelle{animation:bulle 3.6s ease-in-out infinite}
+@media(max-width:600px){.mono{font-size:46px}h1.glitch{font-size:17px}#scene-plat{width:104px;bottom:6%}#scene-verre{width:64px}#livre{height:74vh}.cmd{bottom:16px;right:12px;padding:11px 15px;font-size:10px}.ctrl{bottom:16px}}
+</style>
+</head>
+<body>
+<div class="entete">
+  <div class="marque">A CASA MIA<small>Kinshasa, Gombe</small></div>
+  <div class="points" id="points"></div>
+</div>
+
+<div class="scene" id="scene-plat">
+  <svg viewBox="0 0 150 120"><ellipse cx="75" cy="104" rx="62" ry="7"/><path d="M22 104 Q30 62 75 62 Q120 62 128 104"/><circle cx="75" cy="46" r="9" class="etincelle"/><path d="M75 55 L75 62"/></svg>
+</div>
+<div class="scene" id="scene-verre">
+  <svg viewBox="0 0 90 120"><path d="M18 20 H72 L48 66 V104 H62 M48 104 H34 M48 66 L24 20"/><circle cx="38" cy="34" r="4" class="etincelle"/><circle cx="56" cy="30" r="3" class="etincelle" style="animation-delay:1.1s"/></svg>
+</div>
+
+<div id="livre">
+  <div class="feuille couverture active">
+    <div class="filigrane"></div>
+    <div class="mono">A</div>
+    <h1 class="glitch" data-texte="A CASA MIA">A CASA MIA</h1>
+    <div class="sous">CUCINA ITALIANA · PIZZA AU FEU DE BOIS</div>
+    <div class="trait"></div>
+    <div class="infos">
+      <b>70b Avenue Uvira, Gombe</b><br>Kinshasa, Gombe<br>
+      <b>WhatsApp : +243812331938</b>
+    </div>
+    <div class="pied"><span>A Casa Mia — Menu digital</span><a href="tel:243812331938">Nous appeler</a></div>
+  </div>
+  <div class="feuille">
+    <div class="filigrane"></div>
+    <h2>Antipasti</h2><div class="ligne-cat"></div>
+    <div class="plats">
+      <div class="plat"><div><div class="n">Bruschetta al pomodoro</div><div class="d">Pain grillé, tomates fraîches, basilic</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">8$</span>
+        <button onclick="ajouter('Bruschetta al pomodoro', '8$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Burrata &amp; jambon cru</div><div class="d">Huile d'olive, roquette</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">14$</span>
+        <button onclick="ajouter('Burrata &amp; jambon cru', '14$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Vitello tonnato</div><div class="d">Veau rosé, sauce thon capres</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">16$</span>
+        <button onclick="ajouter('Vitello tonnato', '16$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+    </div>
+    <div class="pied"><span>A Casa Mia</span><a href="https://wa.me/243812331938">WhatsApp</a></div>
+  </div>
+
+  <div class="feuille">
+    <div class="filigrane"></div>
+    <h2>Pizze au feu de bois</h2><div class="ligne-cat"></div>
+    <div class="plats">
+      <div class="plat"><div><div class="n">Margherita</div><div class="d">San Marzano, mozzarella fior di latte, basilic</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">14$</span>
+        <button onclick="ajouter('Margherita', '14$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Diavola</div><div class="d">Salami piquant, mozzarella, piment</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">17$</span>
+        <button onclick="ajouter('Diavola', '17$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Quattro formaggi</div><div class="d">Gorgonzola, parmesan, mozzarella, chèvre</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">18$</span>
+        <button onclick="ajouter('Quattro formaggi', '18$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Prosciutto e funghi</div><div class="d">Jambon, champignons frais</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">17$</span>
+        <button onclick="ajouter('Prosciutto e funghi', '17$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+    </div>
+    <div class="pied"><span>A Casa Mia</span><a href="https://wa.me/243812331938">WhatsApp</a></div>
+  </div>
+
+  <div class="feuille">
+    <div class="filigrane"></div>
+    <h2>Paste &amp; Risotti</h2><div class="ligne-cat"></div>
+    <div class="plats">
+      <div class="plat"><div><div class="n">Linguine alle vongole</div><div class="d">Palourdes, ail, vin blanc, persil</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">22$</span>
+        <button onclick="ajouter('Linguine alle vongole', '22$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Lasagna della casa</div><div class="d">Bolognaise mijotée, béchamel</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">19$</span>
+        <button onclick="ajouter('Lasagna della casa', '19$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Risotto ai funghi porcini</div><div class="d">Cèpes, parmesan 24 mois</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">21$</span>
+        <button onclick="ajouter('Risotto ai funghi porcini', '21$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Tagliatelle al tartufo</div><div class="d">Crème de truffe, parmesan</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">24$</span>
+        <button onclick="ajouter('Tagliatelle al tartufo', '24$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+    </div>
+    <div class="pied"><span>A Casa Mia</span><a href="https://wa.me/243812331938">WhatsApp</a></div>
+  </div>
+
+  <div class="feuille">
+    <div class="filigrane"></div>
+    <h2>Dolci</h2><div class="ligne-cat"></div>
+    <div class="plats">
+      <div class="plat"><div><div class="n">Tiramisu classico</div><div class="d">Mascarpone, café espresso</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">8$</span>
+        <button onclick="ajouter('Tiramisu classico', '8$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+      <div class="plat"><div><div class="n">Panna cotta</div><div class="d">Coulis de fruits rouges</div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="p">7$</span>
+        <button onclick="ajouter('Panna cotta', '7$', event)" style="width:26px;height:26px;border-radius:50%;background:var(--or);color:#141208;border:none;font-weight:700;cursor:pointer">+</button></div></div>
+    </div>
+    <div class="pied"><span>A Casa Mia</span><a href="https://wa.me/243812331938">WhatsApp</a></div>
+  </div>
+
+  <div class="feuille">
+    <div class="filigrane"></div>
+    <h2>Nous Trouver</h2><div class="ligne-cat"></div>
+    <div class="plats">
+      <div class="plat"><div><div class="n">Adresse</div><div class="d">70b Avenue Uvira, Gombe<br>Kinshasa, Gombe</div></div></div>
+      <div class="plat"><div><div class="n">Téléphone / WhatsApp</div><div class="d">+243812331938</div></div></div>
+      <div class="plat"><div><div class="n">Commander</div><div class="d">Choisissez vos plats dans le menu, puis validez : votre commande part directement sur WhatsApp.</div></div></div>
+    </div>
+    <div class="pied"><span>A Casa Mia</span><a href="https://wa.me/243812331938">WhatsApp</a></div>
+  </div>
+</div>
+
+<div class="ctrl">
+  <button onclick="tourner(-1)">‹</button>
+  <span id="compteur">Page 1 / 6</span>
+  <button onclick="tourner(1)">›</button>
+</div>
+<a class="cmd" href="#" onclick="ouvrirPanier(event)">Commander 🛒</a>
+
+<div class="panneau" id="panneau">
+  <div class="boite">
+    <h3>Votre commande</h3>
+    <div id="lignes"></div>
+    <input id="table" placeholder="Numéro de table / nom">
+    <button class="valider" onclick="envoyer()">Envoyer sur WhatsApp</button>
+    <button class="fermer" onclick="document.getElementById('panneau').classList.remove('ouvert')">Fermer</button>
+  </div>
+</div>
+
+<script>
+var total = 6;
+var courante = 0;
+var feuilles = document.querySelectorAll('.feuille');
+var points = document.getElementById('points');
+for (var i = 0; i < total; i++) { var d = document.createElement('i'); if (i === 0) d.className = 'on'; points.appendChild(d); }
+function tourner(sens) {
+  var n = courante + sens;
+  if (n < 0 || n >= total) return;
+  feuilles[courante].classList.remove('active');
+  courante = n;
+  feuilles[courante].classList.add('active');
+  document.getElementById('compteur').textContent = 'Page ' + (courante + 1) + ' / ' + total;
+  points.querySelectorAll('i').forEach(function (p, k) { p.className = k === courante ? 'on' : ''; });
+}
+var panier = {};
+function ajouter(nom, prix, ev) {
+  ev.stopPropagation();
+  panier[nom] = (panier[nom] || 0) + 1;
+  afficherPanier();
+}
+function retirer(nom) { if (panier[nom]) { panier[nom]--; if (!panier[nom]) delete panier[nom]; } afficherPanier(); }
+function afficherPanier() {
+  var z = document.getElementById('lignes'); z.innerHTML = '';
+  var vide = true;
+  for (var n in panier) {
+    vide = false;
+    var d = document.createElement('div'); d.className = 'choix';
+    d.innerHTML = '<span>' + n + ' × ' + panier[n] + '</span><button onclick="retirer(\'' + n.replace(/'/g, "") + '\')">−</button>';
+    z.appendChild(d);
+  }
+  if (vide) z.innerHTML = '<div class="choix" style="color:#8B8064">Votre panier est vide. Touchez + sur un plat.</div>';
+}
+function ouvrirPanier(ev) { ev.preventDefault(); afficherPanier(); document.getElementById('panneau').classList.add('ouvert'); }
+function envoyer() {
+  var t = document.getElementById('table').value || 'non précisée';
+  var msg = 'Bonjour A Casa Mia, je souhaite commander :';
+  var vide = true;
+  for (var n in panier) { vide = false; msg += '\n- ' + panier[n] + ' × ' + n; }
+  if (vide) { alert('Ajoutez au moins un plat.'); return; }
+  msg += '\nTable : ' + t;
+  window.open('https://wa.me/243812331938?text=' + encodeURIComponent(msg), '_blank');
+  document.getElementById('panneau').classList.remove('ouvert');
+}
+afficherPanier();
+</script>
+</body>
+</html>

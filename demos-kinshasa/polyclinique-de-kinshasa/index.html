@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polyclinique de Kinshasa: soins, imagerie et laboratoire à la Gombe</title>
+<meta name="description" content="La Polyclinique de Kinshasa, fondée en 1961, au 34 avenue des Flamboyants, Gombe. Consultations, imagerie médicale, laboratoire, hôpital de jour et examens médicaux pour visa USA.">
+<style>
+  :root{
+    --encre:#12211F;
+    --vert:#0E3B36;
+    --vert-clair:#1C5A52;
+    --sauge:#7FA398;
+    --sable:#F7F4ED;
+    --sable-2:#EFEAE0;
+    --ligne:rgba(18,33,31,.12);
+    --gris:#5C6B67;
+    --or:#B08D57;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--sable);color:var(--encre);font-family:var(--sans);
+    font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ---------- entête ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,244,237,.88);
+    backdrop-filter:saturate(140%) blur(14px);
+    border-bottom:1px solid var(--ligne);
+  }
+  .barre{
+    max-width:1180px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .marque{display:flex;align-items:center;gap:12px}
+  .sceau{
+    width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--vert);color:var(--vert);
+    display:grid;place-items:center;flex:none;
+    font-family:var(--serif);font-size:13px;letter-spacing:.02em;
+  }
+  .marque-nom{font-family:var(--serif);font-size:17px;line-height:1.15;letter-spacing:.01em}
+  .marque-nom small{
+    display:block;font-family:var(--sans);font-size:9.5px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--gris);margin-top:3px;
+  }
+  nav{display:flex;align-items:center;gap:26px}
+  nav a{font-size:13px;color:var(--gris);transition:color .2s}
+  nav a:hover{color:var(--vert)}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:11px 20px;border-radius:2px;font-size:13px;letter-spacing:.03em;
+    background:var(--vert);color:var(--sable);border:1px solid var(--vert);
+    transition:background .22s,color .22s,border-color .22s;
+  }
+  .btn:hover{background:var(--vert-clair);border-color:var(--vert-clair)}
+  .btn-creux{background:transparent;color:var(--vert)}
+  .btn-creux:hover{background:var(--vert);color:var(--sable)}
+  .burger{display:none;background:none;border:1px solid var(--ligne);border-radius:2px;
+    width:42px;height:38px;color:var(--vert);font-size:16px;cursor:pointer}
+
+  /* ---------- héros ---------- */
+  .heros{
+    max-width:1180px;margin:0 auto;padding:78px 24px 64px;
+    display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;
+  }
+  .etiquette{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--vert-clair);
+    margin-bottom:26px;
+  }
+  .etiquette::before{content:"";width:26px;height:1px;background:var(--or)}
+  h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(38px,5.1vw,62px);line-height:1.08;letter-spacing:-.015em;
+  }
+  h1 em{font-style:italic;color:var(--vert-clair)}
+  .chapeau{
+    margin-top:24px;max-width:48ch;font-size:16.5px;color:var(--gris);line-height:1.75;
+  }
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .chiffres{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+    margin-top:46px;padding-top:26px;border-top:1px solid var(--ligne);max-width:520px;
+  }
+  .chiffres b{display:block;font-family:var(--serif);font-size:27px;font-weight:400;line-height:1}
+  .chiffres span{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);margin-top:7px}
+
+  /* visuel du héros : composition sobre */
+  .visuel{position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden;
+    background:linear-gradient(160deg,#0E3B36 0%,#174840 45%,#276A5F 100%)}
+  .visuel::after{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 74% 22%,rgba(176,141,87,.32),transparent 46%),
+      radial-gradient(circle at 18% 82%,rgba(127,163,152,.24),transparent 52%);
+  }
+  .visuel .cercles{position:absolute;inset:0;opacity:.5}
+  .visuel .cercles span{
+    position:absolute;border:1px solid rgba(247,244,237,.16);border-radius:50%;
+  }
+  .visuel .c1{width:78%;aspect-ratio:1;top:-16%;right:-22%}
+  .visuel .c2{width:52%;aspect-ratio:1;bottom:-12%;left:-14%}
+  .visuel .c3{width:34%;aspect-ratio:1;top:38%;left:26%}
+  .visuel .legende{
+    position:absolute;left:26px;right:26px;bottom:24px;z-index:2;
+    color:rgba(247,244,237,.9);font-size:12.5px;line-height:1.6;
+    border-top:1px solid rgba(247,244,237,.22);padding-top:14px;
+  }
+  .visuel .legende b{font-family:var(--serif);font-weight:400;font-size:15px;display:block;margin-bottom:3px}
+  .visuel .croix{
+    position:absolute;top:24px;left:26px;z-index:2;
+    font-family:var(--serif);font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:rgba(247,244,237,.62);
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:76px 24px}
+  .interieur{max-width:1180px;margin:0 auto}
+  .titre-section{max-width:640px;margin-bottom:46px}
+  .num{
+    font-family:var(--serif);font-size:12px;letter-spacing:.2em;
+    color:var(--or);display:block;margin-bottom:14px;
+  }
+  h2{font-family:var(--serif);font-size:clamp(26px,3.2vw,38px);font-weight:400;line-height:1.2;letter-spacing:-.01em}
+  .titre-section p{margin-top:16px;color:var(--gris);font-size:15.5px}
+
+  .services{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--ligne);
+    border:1px solid var(--ligne)}
+  .service{background:var(--sable);padding:34px 32px;transition:background .25s}
+  .service:hover{background:#FDFCF8}
+  .service h3{font-family:var(--serif);font-size:21px;font-weight:400;margin-bottom:12px;display:flex;align-items:baseline;gap:12px}
+  .service h3 i{font-style:normal;font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;color:var(--sauge)}
+  .service p{font-size:14.5px;color:var(--gris);line-height:1.7}
+  .service ul{list-style:none;margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 8px}
+  .service li{
+    font-size:11.5px;letter-spacing:.02em;color:var(--vert-clair);
+    border:1px solid rgba(28,90,82,.22);border-radius:100px;padding:4px 11px;
+  }
+
+  /* visa */
+  .visa{background:var(--vert);color:var(--sable)}
+  .visa .interieur{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .visa h2{color:var(--sable)}
+  .visa p{color:rgba(247,244,237,.76);font-size:15.5px;margin-top:18px;max-width:44ch}
+  .visa .num{color:var(--sauge)}
+  .liste-visa{list-style:none;border-top:1px solid rgba(247,244,237,.2)}
+  .liste-visa li{
+    display:flex;justify-content:space-between;gap:20px;
+    padding:14px 2px;border-bottom:1px solid rgba(247,244,237,.14);font-size:14px;
+  }
+  .liste-visa span{color:rgba(247,244,237,.72)}
+  .liste-visa b{font-weight:400;color:var(--sable);white-space:nowrap}
+
+  /* équipe */
+  .equipe{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 26px}
+  .medecin{padding-top:18px;border-top:1px solid var(--ligne)}
+  .medecin b{display:block;font-family:var(--serif);font-size:18px;font-weight:400;line-height:1.3}
+  .medecin span{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--vert-clair);margin-top:7px}
+
+  /* infos */
+  .infos{background:var(--sable-2)}
+  .infos .interieur{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .bloc-info{background:var(--sable);border:1px solid var(--ligne);padding:32px}
+  .bloc-info h3{font-family:var(--serif);font-size:19px;font-weight:400;margin-bottom:18px}
+  .contact-ligne{display:flex;justify-content:space-between;gap:18px;padding:12px 0;
+    border-bottom:1px solid var(--ligne);font-size:14px;align-items:baseline}
+  .contact-ligne:last-of-type{border-bottom:none}
+  .contact-ligne span{color:var(--gris);font-size:12.5px;letter-spacing:.04em}
+  .contact-ligne a{font-variant-numeric:tabular-nums;color:var(--vert);white-space:nowrap}
+  .contact-ligne a:hover{text-decoration:underline}
+  .adresse{font-size:15px;line-height:1.8;color:var(--encre)}
+  .adresse small{display:block;color:var(--gris);font-size:12.5px;margin-top:8px;line-height:1.6}
+  .horaires{list-style:none;margin-top:6px}
+  .horaires li{display:flex;justify-content:space-between;padding:10px 0;
+    border-bottom:1px dotted rgba(18,33,31,.16);font-size:14px}
+  .horaires li:last-child{border-bottom:none}
+  .horaires b{font-weight:400;font-variant-numeric:tabular-nums}
+
+  /* appel final */
+  .final{padding:88px 24px;text-align:center;border-top:1px solid var(--ligne)}
+  .final h2{max-width:20ch;margin:0 auto}
+  .final p{color:var(--gris);margin:18px auto 0;max-width:46ch;font-size:15.5px}
+  .final .actions{justify-content:center}
+
+  /* pied */
+  footer{border-top:1px solid var(--ligne);padding:34px 24px;background:var(--sable)}
+  .pied{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;
+    align-items:center;gap:20px;flex-wrap:wrap}
+  .pied p{font-size:12px;color:var(--gris);letter-spacing:.02em}
+  .pied a.inspire{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--vert);border-bottom:1px solid var(--or);padding-bottom:2px;
+  }
+  .pied a.inspire:hover{color:var(--or)}
+
+  /* flottant */
+  .flottant{
+    position:fixed;right:20px;bottom:20px;z-index:60;
+    background:var(--vert);color:var(--sable);
+    padding:13px 20px;border-radius:100px;font-size:13px;letter-spacing:.02em;
+    box-shadow:0 12px 30px rgba(14,59,54,.28);
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .flottant:hover{background:var(--vert-clair)}
+
+  /* révélation */
+  .rev{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .rev.vu{opacity:1;transform:none}
+
+  @media (max-width:900px){
+    nav{display:none}
+    nav.ouvert{
+      display:flex;position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;align-items:flex-start;gap:0;
+      background:var(--sable);border-bottom:1px solid var(--ligne);padding:8px 24px 18px;
+    }
+    nav.ouvert a{padding:11px 0;font-size:14px;width:100%;border-bottom:1px solid var(--ligne)}
+    .burger{display:block}
+    .heros{grid-template-columns:1fr;gap:44px;padding-top:52px}
+    .visuel{aspect-ratio:16/11;order:-1}
+    .services{grid-template-columns:1fr}
+    .visa .interieur,.infos .interieur{grid-template-columns:1fr;gap:34px}
+    .equipe{grid-template-columns:repeat(2,1fr)}
+    section{padding:58px 20px}
+  }
+  @media (max-width:560px){
+    .equipe{grid-template-columns:1fr}
+    .chiffres{gap:12px}
+    .chiffres b{font-size:22px}
+    .flottant{right:12px;bottom:12px;padding:11px 16px;font-size:12px}
+    .pied{flex-direction:column;align-items:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .rev{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="barre">
+    <a class="marque" href="#top">
+      <span class="sceau">PLK</span>
+      <span class="marque-nom">Polyclinique de Kinshasa
+        <small>Depuis 1961 · Gombe</small>
+      </span>
+    </a>
+    <nav id="nav">
+      <a href="#services">Services</a>
+      <a href="#visa">Visa USA</a>
+      <a href="#equipe">Équipe</a>
+      <a href="#infos">Nous trouver</a>
+      <a class="btn" href="tel:+243852495525">Prendre rendez-vous</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="heros">
+    <div>
+      <span class="etiquette">Établissement médical · Kinshasa</span>
+      <h1>Une médecine de proximité, <em>rigoureuse</em> et discrète.</h1>
+      <p class="chapeau">
+        Fondée en 1961 et installée dans des locaux rénovés en 2019, la Polyclinique de
+        Kinshasa réunit consultations spécialisées, imagerie médicale, laboratoire et
+        hôpital de jour au cœur de la Gombe.
+      </p>
+      <div class="actions">
+        <a class="btn" href="tel:+243852495525">Appeler la réception</a>
+        <a class="btn btn-creux" href="#services">Découvrir nos services</a>
+      </div>
+      <div class="chiffres">
+        <div><b>1961</b><span>Année de fondation</span></div>
+        <div><b>2019</b><span>Locaux rénovés</span></div>
+        <div><b>4</b><span>Pôles de soins</span></div>
+      </div>
+    </div>
+
+    <div class="visuel" aria-hidden="true">
+      <div class="cercles">
+        <span class="c1"></span><span class="c2"></span><span class="c3"></span>
+      </div>
+      <div class="croix">Prendre soin</div>
+      <div class="legende">
+        <b>34, avenue des Flamboyants</b>
+        Commune de la Gombe, Kinshasa. Référence : station Total, avenue de la Révolution.
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="interieur">
+      <div class="titre-section rev">
+        <span class="num">01 / Nos pôles</span>
+        <h2>Quatre plateaux, une même exigence.</h2>
+        <p>
+          La plupart des situations peuvent être prises en charge en ambulatoire sur place.
+          Des spécialistes correspondants consultent également à proximité.
+        </p>
+      </div>
+
+      <div class="services rev">
+        <article class="service">
+          <h3><i>01</i>Consultations</h3>
+          <p>Médecine générale et spécialités, pour adultes et enfants, sur rendez-vous.</p>
+          <ul>
+            <li>Médecine générale</li><li>Pédiatrie</li><li>Prénatal</li>
+            <li>ORL</li><li>Neurologie</li><li>Oncologie</li><li>Hématologie</li><li>Drépanocytose</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <h3><i>02</i>Imagerie médicale</h3>
+          <p>Un plateau d'imagerie numérisé pour un diagnostic rapide et lisible.</p>
+          <ul>
+            <li>Radiologie numérisée</li><li>Mammographie</li>
+            <li>Échographie</li><li>Doppler</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <h3><i>03</i>Laboratoire</h3>
+          <p>Analyses courantes et examens spécialisés, avec résultats transmis sans détour.</p>
+          <ul>
+            <li>Hématologie</li><li>Biochimie</li>
+            <li>GeneXpert</li><li>Myélogramme</li>
+          </ul>
+        </article>
+
+        <article class="service">
+          <h3><i>04</i>Hôpital de jour</h3>
+          <p>Des soins programmés à la journée, sans hospitalisation complète.</p>
+          <ul>
+            <li>Perfusions</li><li>Chimiothérapie</li>
+            <li>Aérosols</li><li>Anémie SS</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="visa" id="visa">
+    <div class="interieur">
+      <div class="rev">
+        <span class="num">02 / Examens pour visa</span>
+        <h2>Examens médicaux pour le visa américain.</h2>
+        <p>
+          La Polyclinique reçoit les candidats pour la visite médicale exigée par
+          l'ambassade. Examens et vaccinations sont réalisés sur place, après consultation,
+          selon l'âge et le dossier de chacun.
+        </p>
+        <div class="actions" style="margin-top:30px">
+          <a class="btn" href="tel:+243895756366" style="background:var(--sable);color:var(--vert);border-color:var(--sable)">
+            Service visas : +243 895 756 366
+          </a>
+        </div>
+      </div>
+
+      <ul class="liste-visa rev">
+        <li><span>Accueil</span><b>Lun – Ven, 08h – 17h</b></li>
+        <li><span>Samedi</span><b>08h – 12h</b></li>
+        <li><span>Documents</span><b>Passeport + copie</b></li>
+        <li><span>Enfants</span><b>Carte de vaccination</b></li>
+        <li><span>Candidats DV</span><b>4 photos format US</b></li>
+        <li><span>Examens et vaccins</span><b>Réalisés sur place</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="equipe">
+    <div class="interieur">
+      <div class="titre-section rev">
+        <span class="num">03 / L'équipe</span>
+        <h2>Des praticiens installés dans la durée.</h2>
+        <p>
+          Une équipe médicale stable, formée à Kinshasa, Barcelone, Marseille ou Lyon,
+          appuyée par une administration dédiée aux conventions d'entreprise.
+        </p>
+      </div>
+
+      <div class="equipe rev">
+        <div class="medecin"><b>Dr Jean-Baptiste Juste</b><span>Médecin directeur</span></div>
+        <div class="medecin"><b>Dr Richard Munyoka</b><span>Gynécologie · prénatal</span></div>
+        <div class="medecin"><b>Dr Daniel Baume</b><span>Hématologie · oncologie</span></div>
+        <div class="medecin"><b>Dr Yves Nzanzu</b><span>Radiologie · imagerie</span></div>
+        <div class="medecin"><b>Dr Rosette Lepira</b><span>Pédiatrie · allergologie</span></div>
+        <div class="medecin"><b>Mme Andjo Likinda</b><span>Administration</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="infos" id="infos">
+    <div class="interieur">
+      <div class="bloc-info rev">
+        <h3>Nous joindre</h3>
+        <div class="contact-ligne">
+          <span>Rendez-vous &amp; questions médicales</span>
+          <a href="tel:+243852495525">+243 852 495 525</a>
+        </div>
+        <div class="contact-ligne">
+          <span>Visas USA &amp; analyses</span>
+          <a href="tel:+243895756366">+243 895 756 366</a>
+        </div>
+        <div class="contact-ligne">
+          <span>Administration &amp; conventions</span>
+          <a href="tel:+243815013424">+243 815 013 424</a>
+        </div>
+        <div class="contact-ligne">
+          <span>Courriel</span>
+          <a href="mailto:polyclinique.kinshasa@gmail.com">polyclinique.kinshasa@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="bloc-info rev">
+        <h3>Adresse &amp; horaires</h3>
+        <p class="adresse">
+          34, avenue des Flamboyants<br>
+          Commune de la Gombe, Kinshasa
+          <small>Référence : station Total, avenue de la Révolution (ex 24 novembre).</small>
+        </p>
+        <ul class="horaires" style="margin-top:22px">
+          <li><span>Lundi – Vendredi</span><b>08h00 – 17h00</b></li>
+          <li><span>Samedi</span><b>08h00 – 12h00</b></li>
+          <li><span>Conventions d'entreprise</span><b>Sur dossier</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="final">
+    <h2>Un doute sur un examen ou une convention ?</h2>
+    <p>Un appel suffit pour savoir à quel service vous adresser et préparer votre venue.</p>
+    <div class="actions">
+      <a class="btn" href="tel:+243852495525">+243 852 495 525</a>
+      <a class="btn btn-creux" href="https://wa.me/243852495525">Écrire sur WhatsApp</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="pied">
+    <p>© 2026 Polyclinique de Kinshasa · 34, avenue des Flamboyants, Gombe, Kinshasa</p>
+    <a class="inspire" href="tel:+243977555768">Inspire by YuuStore</a>
+  </div>
+</footer>
+
+<a class="flottant" href="tel:+243852495525">
+  <span aria-hidden="true">✆</span> Prendre rendez-vous
+</a>
+
+<script>
+  (function(){
+    var burger = document.getElementById('burger');
+    var nav = document.getElementById('nav');
+    if (burger && nav) {
+      burger.addEventListener('click', function(){
+        nav.classList.toggle('ouvert');
+        burger.textContent = nav.classList.contains('ouvert') ? '✕' : '☰';
+      });
+      nav.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click', function(){
+          nav.classList.remove('ouvert');
+          burger.textContent = '☰';
+        });
+      });
+    }
+
+    var cibles = document.querySelectorAll('.rev');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entrees){
+        entrees.forEach(function(e){
+          if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      cibles.forEach(function(c){ io.observe(c); });
+    } else {
+      cibles.forEach(function(c){ c.classList.add('vu'); });
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CALI — Congo American Language Institute — ÉCOLE DE LANGUES · ANGLAIS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#4A7FA8;--accent-l:#E8D9A0;--bg:#0E0E0C;--card:#16150F;--txt:#EDE6D6;--mut:#8B8064;--bord:rgba(255,255,255,.09);--ft:'Cinzel';--fc:'Space Mono';--fs:'Playfair Display'}
+body{background:var(--bg);color:var(--txt);font-family:var(--fc),sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.055;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+ animation:grain .5s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(3%,3%)}}
+.mono{font-family:var(--fc),monospace;letter-spacing:.22em;text-transform:uppercase;font-size:10px;color:var(--mut)}
+h1,h2,h3{font-family:var(--ft),serif;font-weight:600}
+header{padding:26px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bord);position:relative;z-index:10}
+.logo{font-family:var(--ft),serif;font-size:22px;font-weight:700;color:var(--accent)}
+.logo small{display:block;font-family:var(--fc),monospace;font-size:8px;letter-spacing:.25em;color:var(--mut);margin-top:3px}
+nav a{color:var(--txt);text-decoration:none;margin-left:26px;font-size:13px;opacity:.75}
+nav a:hover{opacity:1;color:var(--accent-l)}
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 24px;position:relative;z-index:10}
+.hero .kicker{margin-bottom:26px}
+.hero h1{font-size:clamp(42px,9vw,104px);line-height:.95;letter-spacing:-.02em}
+.glitch{position:relative;display:inline-block;color:var(--txt)}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0;pointer-events:none}
+.glitch::before{color:var(--accent);animation:g1 3.6s infinite}
+.glitch::after{color:#FF5B68;animation:g2 3.6s infinite}
+@keyframes g1{0%,92%,100%{transform:translate(0);opacity:0}93%{transform:translate(-4px,2px);opacity:.75}96%{transform:translate(3px,-2px);opacity:.55}}
+@keyframes g2{0%,93%,100%{transform:translate(0);opacity:0}94%{transform:translate(4px,-2px);opacity:.7}97%{transform:translate(-3px,2px);opacity:.5}}
+.hero p.sous{margin-top:24px;font-size:15px;color:var(--mut);max-width:560px;line-height:1.7}
+.btns{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.05em;transition:.25s;border:1px solid var(--accent);color:var(--accent-l);background:transparent}
+.btn.plein{background:var(--accent);color:#0E0F12;border-color:var(--accent)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+section{padding:90px 24px;max-width:1120px;margin:0 auto;position:relative;z-index:10}
+section h2{font-size:clamp(30px,5vw,52px);margin:14px 0 34px}
+.cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.carte{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:28px;transition:.3s}
+.carte:hover{border-color:var(--accent);transform:translateY(-4px)}
+.carte h3{font-size:23px;color:var(--accent-l);margin-bottom:10px}
+.carte p{font-size:13px;color:var(--mut);line-height:1.65}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.tuile{aspect-ratio:4/3;border-radius:14px;border:1px solid var(--bord);display:flex;align-items:flex-end;padding:16px;
+ background:linear-gradient(135deg,#1d222b,#12151a 60%,rgba(0,0,0,.4));position:relative;overflow:hidden}
+.tuile::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.06),transparent 60%)}
+.tuile span{font-family:var(--fc),monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-l);z-index:2}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:38px}
+.info ul{list-style:none}
+.info li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.08);font-size:13px}
+.info li b{color:var(--accent-l);font-weight:500}
+.info p{font-size:13px;color:var(--mut);line-height:1.8}
+footer{padding:34px 24px;text-align:center;border-top:1px solid var(--bord);position:relative;z-index:10}
+footer a{color:var(--accent);text-decoration:none;font-size:12px}
+.flottant{position:fixed;right:22px;bottom:22px;z-index:20;background:var(--accent);color:#0E0F12;padding:15px 24px;border-radius:999px;text-decoration:none;font-weight:600;font-size:13px;box-shadow:0 12px 34px rgba(0,0,0,.55)}
+@media(max-width:720px){nav{display:none}section{padding:64px 20px}}
+.logo-img{height:34px;width:auto;max-width:120px;object-fit:contain;display:block;margin-bottom:6px}/* traitement galerie */
+.tuile{position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(155deg,var(--card) 0%,var(--bg) 100%);border:1px solid rgba(0,0,0,.07);display:flex;align-items:flex-end;padding:18px;min-height:150px}
+.tuile::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 28% 18%,var(--accent) 0%,transparent 62%);opacity:.22}
+.tuile::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(48deg,rgba(0,0,0,.035) 0 1px,transparent 1px 9px)}
+.tuile span{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;letter-spacing:.02em;color:var(--txt)}
+</style></head><body>
+<header><div class="logo"><img src="logo.png" alt="" class="logo-img">CALI — Congo American Language Institute<small>KINSHASA, GOMBE</small></div>
+<nav><a href="#offres">Offres</a><a href="#galerie">Galerie</a><a href="#infos">Contact</a></nav></header>
+<div class="hero">
+  <div class="mono kicker">ÉCOLE DE LANGUES · ANGLAIS</div>
+  <h1><span class="glitch" data-t="CALI — Congo American Language Institute">CALI — Congo American Language Institute</span></h1>
+  <p class="sous">Apprenez l'anglais avec la méthode PowerEnglish, en cours du jour, du soir ou le week-end.</p>
+  <div class="btns">
+    <a class="btn plein" href="https://wa.me/243810888838?text=Bonjour%20CALI%20%E2%80%94%20Congo%20American%20Language%20Institute%2C%20je%20vous%20contacte%20au%20sujet%20de%20votre%20site%20internet.">💬 Écrire sur WhatsApp</a>
+    <a class="btn" href="tel:+243810888838">📞 +243810888838</a>
+  </div>
+</div>
+<section id="offres"><div class="mono">01 — Nos offres</div><h2>Ce que nous proposons</h2><div class="cartes"><div class="carte"><h3>PowerEnglish</h3><p>Programme intensif de communication orale et écrite.</p></div><div class="carte"><h3>Cours du soir</h3><p>Pour les professionnels et les étudiants.</p></div><div class="carte"><h3>Week-end</h3><p>Sessions pour ceux qui travaillent en semaine.</p></div><div class="carte"><h3>Certification</h3><p>Attestation de niveau à la fin du parcours.</p></div></div></section>
+<section id="galerie"><div class="mono">02 — Galerie</div><h2>Nos réalisations</h2><div class="gal"><figure class="tuile"><span>Cours du jour</span></figure><figure class="tuile"><span>Cours du soir</span></figure><figure class="tuile"><span>Week-end</span></figure><figure class="tuile"><span>Bibliothèque</span></figure><figure class="tuile"><span>Salle de classe</span></figure><figure class="tuile"><span>Remise d'attestation</span></figure></div></section>
+<section id="infos"><div class="mono">03 — Nous trouver</div><h2>Informations pratiques</h2>
+<div class="info"><div><p><b style="color:var(--accent-l)">Adresse</b><br>24-25 Av. de l'Équateur (+ antennes Limete et Kinkole)<br>KINSHASA, GOMBE</p>
+<p style="margin-top:18px"><b style="color:var(--accent-l)">Téléphone / WhatsApp</b><br>+243810888838</p>
+<p style="margin-top:18px"><b style="color:var(--accent-l)">Réseaux</b><br></p></div>
+<div><ul><li><span>Secrétariat</span><b>Lundi – Vendredi, 08h00 – 18h00</b></li><li><span>Samedi</span><b>09h00 – 14h00</b></li><li><span>Préinscription</span><b>En ligne ou sur place</b></li></ul></div></div></section>
+<footer><span class="mono">© 2026 CALI — Congo American Language Institute · Kinshasa</span><br><br><a href="tel:+243977555768">Inspire by YuuStore</a></footer>
+<a class="flottant" href="https://wa.me/243810888838?text=Bonjour%20CALI%20%E2%80%94%20Congo%20American%20Language%20Institute%2C%20je%20vous%20contacte%20au%20sujet%20de%20votre%20site%20internet.">💬 WhatsApp</a>
+</body></html>

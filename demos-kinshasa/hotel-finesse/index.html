@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hôtel Finesse — Bandalungwa, Kinshasa</title>
+<style>
+  :root{--nuit:#1d1a17;--sable:#f7f2ea;--terre:#7d4a2d;--olive:#5c6350;
+        --trait:#e0d6c7;--sourdine:#7a7268}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--sable);color:var(--nuit);
+       font:16px/1.7 "Helvetica Neue",Arial,sans-serif}
+  h1,h2,h3{font-family:"Didot","Georgia",serif;font-weight:400;margin:0}
+  .haut{background:var(--nuit);color:#efe7db;font-size:12.5px;letter-spacing:.06em}
+  .haut div{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;
+            justify-content:space-between;flex-wrap:wrap;gap:10px}
+  header{max-width:1040px;margin:0 auto;padding:26px 24px;display:flex;
+         justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .nom{font-family:"Didot",Georgia,serif;font-size:26px;letter-spacing:.12em;
+       text-transform:uppercase}
+  .nom small{display:block;font-family:inherit;font-size:10px;letter-spacing:.32em;
+             color:var(--sourdine);margin-top:4px}
+  nav{display:flex;gap:24px;font-size:13.5px;letter-spacing:.04em}
+  nav a{text-decoration:none;color:var(--nuit);opacity:.8}
+  nav a:hover{opacity:1}
+  .bouton{background:var(--terre);color:#fff;padding:13px 24px;text-decoration:none;
+          font-size:13.5px;letter-spacing:.05em;display:inline-block;border:none;cursor:pointer}
+  .bouton.mince{background:transparent;color:var(--nuit);border:1px solid var(--nuit)}
+  .entree{max-width:1040px;margin:0 auto;padding:70px 24px 54px;text-align:center}
+  .entree p.sur{font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+                color:var(--terre);margin:0 0 20px}
+  .entree h1{font-size:52px;line-height:1.1;max-width:19ch;margin:0 auto}
+  .entree p{max-width:52ch;margin:24px auto 0;color:#4a443d}
+  .entree .actions{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .filet{max-width:1040px;margin:0 auto;padding:0 24px}
+  .filet div{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--trait);
+             border-bottom:1px solid var(--trait);padding:26px 0;gap:20px;text-align:center}
+  .filet b{display:block;font-family:Georgia,serif;font-size:22px}
+  .filet span{font-size:12.5px;color:var(--sourdine);letter-spacing:.05em}
+  section{max-width:1040px;margin:0 auto;padding:64px 24px}
+  .tete{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+        margin-bottom:36px;flex-wrap:wrap}
+  .tete h2{font-size:34px}
+  .tete p{margin:0;color:var(--sourdine);font-size:14px;max-width:44ch}
+  .chambres{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;
+            background:var(--trait);border:1px solid var(--trait)}
+  .chambres article{background:var(--sable);padding:28px 24px;display:flex;
+                    flex-direction:column;gap:10px}
+  .chambres h3{font-size:21px}
+  .chambres p{margin:0;font-size:14px;color:#4a443d;flex:1}
+  .prix{font-family:Georgia,serif;font-size:19px;color:var(--terre)}
+  .prix small{font-family:inherit;font-size:12px;color:var(--sourdine)}
+  .reserver{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+  form{display:grid;gap:16px}
+  label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--sourdine)}
+  input,select,textarea{width:100%;padding:12px;border:1px solid var(--trait);background:#fff;
+    font:15px/1.4 inherit;color:var(--nuit)}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--olive);outline-offset:-1px}
+  .deux{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .note{font-size:13px;color:var(--sourdine);margin:0}
+  .reponse{border:1px solid var(--olive);background:#f3f5ef;padding:20px;font-size:14px;
+           display:none}
+  .reponse.on{display:block}
+  .infos{font-size:14px;color:#4a443d}
+  .infos dt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sourdine);
+            margin-top:18px}
+  .infos dd{margin:3px 0 0}
+  footer{background:var(--nuit);color:#d9d0c3;margin-top:30px}
+  footer div{max-width:1040px;margin:0 auto;padding:32px 24px;display:flex;
+             justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px}
+  footer a{color:#efe7db;text-decoration:none;border-bottom:1px solid #6b6257}
+  @media(max-width:820px){
+    .entree h1{font-size:34px} nav{display:none}
+    .filet div{grid-template-columns:1fr}
+    .reserver{grid-template-columns:1fr;gap:34px}
+  }
+</style>
+</head>
+<body>
+<div class="haut"><div>
+  <span>Réservations · +243 890 000 471</span>
+  <span>Bandalungwa, Kinshasa · Ouvert toute l'année</span>
+</div></div>
+<header>
+  <div class="nom">Hôtel Finesse<small>Bandalungwa · Kinshasa</small></div>
+  <nav>
+    <a href="#chambres">Chambres</a>
+    <a href="#services">Services</a>
+    <a href="#acces">Accès</a>
+    <a href="#reserver">Réserver</a>
+  </nav>
+  <a class="bouton" href="#reserver">Réserver</a>
+</header>
+
+<div class="entree">
+  <p class="sur">Vingt-quatre chambres</p>
+  <h1>Dormir au calme, à dix minutes du centre.</h1>
+  <p>Un hôtel de quartier à Bandalungwa, sans bruit de boulevard. Chambres climatisées,
+     eau chaude, groupe électrogène, parking fermé. Réservation directe, sans commission
+     d'agence en ligne.</p>
+  <div class="actions">
+    <a class="bouton" href="#reserver">Vérifier une disponibilité</a>
+    <a class="bouton mince" href="tel:+243890000471">Appeler la réception</a>
+  </div>
+</div>
+
+<div class="filet"><div>
+  <span><b>24</b>chambres</span>
+  <span><b>10 min</b>du centre-ville</span>
+  <span><b>0 $</b>de frais de réservation</span>
+</div></div>
+
+<section id="chambres">
+  <div class="tete">
+    <h2>Les chambres</h2>
+    <p>Trois catégories, toutes climatisées, avec salle d'eau privée et eau chaude.</p>
+  </div>
+  <div class="chambres">
+    <article>
+      <h3>Standard</h3>
+      <p>Lit double, climatisation, télévision, salle d'eau privée. Idéale pour une nuit d'étape.</p>
+      <div class="prix">45 $ <small>/ nuit</small></div>
+    </article>
+    <article>
+      <h3>Confort</h3>
+      <p>Lit double, bureau, réfrigérateur, balcon sur la cour intérieure. Pour un séjour de plusieurs jours.</p>
+      <div class="prix">65 $ <small>/ nuit</small></div>
+    </article>
+    <article>
+      <h3>Suite</h3>
+      <p>Deux pièces, salon séparé, climatisation dans chaque pièce. Pour un séjour en famille ou un déplacement professionnel.</p>
+      <div class="prix">95 $ <small>/ nuit</small></div>
+    </article>
+  </div>
+</section>
+
+<section id="services">
+  <div class="tete">
+    <h2>Ce qui est compris</h2>
+    <p>Ce qui manque le plus souvent ailleurs, et qui est ici sans supplément.</p>
+  </div>
+  <div class="chambres">
+    <article><h3>Électricité sans coupure</h3><p>Groupe électrogène et onduleur. La climatisation et le wifi continuent même pendant les coupures.</p></article>
+    <article><h3>Wifi dans les chambres</h3><p>Connexion incluse, suffisante pour les appels vidéo. Pas de supplément à la nuit.</p></article>
+    <article><h3>Petit-déjeuner</h3><p>Servi de 6h30 à 10h, dans la salle du bas ou en chambre sur demande.</p></article>
+    <article><h3>Parking fermé</h3><p>Gardien de nuit, portail fermé, quatre places réservées aux clients.</p></article>
+    <article><h3>Eau chaude</h3><p>Chauffe-eau dans chaque salle d'eau, sans horaire de coupure.</p></article>
+    <article><h3>Réception 24h</h3><p>Quelqu'un à l'accueil à toute heure, y compris pour une arrivée tardive.</p></article>
+  </div>
+</section>
+
+<section id="reserver">
+  <div class="tete">
+    <h2>Demander une réservation</h2>
+    <p>La réception confirme la disponibilité et le prix par téléphone ou WhatsApp.</p>
+  </div>
+  <div class="reserver">
+    <div class="infos">
+      <dl>
+        <dt>Adresse</dt><dd>Bandalungwa, Kinshasa<br>À dix minutes du centre-ville</dd>
+        <dt>Réception</dt><dd>+243 890 000 471<br>+243 813 799 188</dd>
+        <dt>Arrivée</dt><dd>À partir de 14h</dd>
+        <dt>Départ</dt><dd>Avant 11h</dd>
+        <dt>Paiement</dt><dd>Espèces, Airtel Money, Orange Money, M-Pesa</dd>
+      </dl>
+    </div>
+    <form id="f" novalidate>
+      <div class="deux">
+        <div><label for="nom">Nom</label><input id="nom" name="nom" required></div>
+        <div><label for="tel">Téléphone</label><input id="tel" name="tel" required></div>
+      </div>
+      <div class="deux">
+        <div><label for="arrivee">Arrivée</label><input id="arrivee" name="arrivee" type="date" required></div>
+        <div><label for="depart">Départ</label><input id="depart" name="depart" type="date" required></div>
+      </div>
+      <div class="deux">
+        <div><label for="chambre">Chambre</label>
+          <select id="chambre" name="chambre">
+            <option>Standard — 45 $</option><option>Confort — 65 $</option><option>Suite — 95 $</option>
+          </select></div>
+        <div><label for="personnes">Personnes</label>
+          <select id="personnes" name="personnes">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+          </select></div>
+      </div>
+      <div>
+        <label for="demande">Demande particulière</label>
+        <textarea id="demande" name="demande" rows="3" placeholder="Arrivée tardive, étage bas, lit supplémentaire…"></textarea>
+      </div>
+      <button class="bouton" type="submit">Envoyer la demande</button>
+      <p class="note">Demande de disponibilité, pas une réservation ferme. La réception confirme.</p>
+      <div class="reponse" id="rep"></div>
+    </form>
+  </div>
+</section>
+
+<section id="acces">
+  <div class="tete">
+    <h2>Accès</h2>
+    <p>Bandalungwa, à quelques minutes du boulevard. Le nom de la rue exacte est communiqué à la confirmation.</p>
+  </div>
+</section>
+
+<footer><div>
+  <span>Hôtel Finesse · Bandalungwa, Kinshasa · +243 890 000 471</span>
+  <span>Maquette réalisée par <a href="https://wa.me/243977555768">Inspire by YuuStore</a></span>
+</div></footer>
+
+<script>
+  const f = document.getElementById('f');
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nom = f.nom.value.trim(), tel = f.tel.value.trim();
+    const rep = document.getElementById('rep');
+    if (nom.length < 2 || tel.replace(/\D/g, '').length < 8) {
+      rep.className = 'reponse on';
+      rep.innerHTML = '<strong>Nom ou numéro incomplet.</strong> La réception ne pourra pas rappeler.';
+      return;
+    }
+    if (f.arrivee.value && f.depart.value && f.depart.value <= f.arrivee.value) {
+      rep.className = 'reponse on';
+      rep.innerHTML = '<strong>La date de départ devrait suivre l\'arrivée.</strong>';
+      return;
+    }
+    const t = 'Demande de réservation Hôtel Finesse%0A'
+      + 'Nom : ' + encodeURIComponent(nom) + '%0A'
+      + 'Téléphone : ' + encodeURIComponent(tel) + '%0A'
+      + 'Du ' + encodeURIComponent(f.arrivee.value) + ' au ' + encodeURIComponent(f.depart.value) + '%0A'
+      + 'Chambre : ' + encodeURIComponent(f.chambre.value) + '%0A'
+      + 'Personnes : ' + encodeURIComponent(f.personnes.value) + '%0A'
+      + 'Demande : ' + encodeURIComponent(f.demande.value || '-');
+    rep.className = 'reponse on';
+    rep.innerHTML = '<strong>Demande prête.</strong><br>Sur la version en ligne, elle entre directement '
+      + 'dans le planning de la réception. Dans cette maquette, elle part par WhatsApp.<br><br>'
+      + '<a class="bouton" target="_blank" rel="noopener" href="https://wa.me/243890000471?text=' + t + '">Envoyer à la réception</a>';
+  });
+</script>
+</body>
+</html>
