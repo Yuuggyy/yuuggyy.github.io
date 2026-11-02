@@ -1,0 +1,1 @@
+import{s as e}from"./link-C9Z9Tb6I.js";import{o as t}from"./index-DjT2ITvV.js";import{n,r}from"./site-chrome-CiV4IhcX.js";var i=e();function a(){return(0,i.jsxs)(`div`,{className:`min-h-screen bg-background`,children:[(0,i.jsx)(r,{}),(0,i.jsx)(t,{}),(0,i.jsx)(n,{})]})}export{a as component};
